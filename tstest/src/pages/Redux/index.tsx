@@ -15,12 +15,15 @@ interface ReduxProps {
 
 interface ReduxState {
   expenses: Expense[];
+  myStartAddExpense: (expense: string) => {};
 }
 
 const Redux: React.FunctionComponent<ReduxState> = (props) => {
 
+  const { myStartAddExpense } = props;
+
   const addExpense: AddExpense = (expense: string) => {
-    startAddExpense(expense);
+    myStartAddExpense(expense);
   };
 
   return (
@@ -36,7 +39,7 @@ interface LinkStateProps {
   expenses: Expense[];
 }
 interface LinkDispatchProps {
-  startAddExpense: (expense: string) => void;
+  myStartAddExpense: (expense: string) => void;
 }
 
 const mapStateToProps = (
@@ -51,7 +54,7 @@ const mapDispatchToProps = (
   ownProps: ReduxProps
 ): LinkDispatchProps => {
   return {
-    startAddExpense: (expense) => dispatch(startAddExpense(expense)),
+    myStartAddExpense: (expense) => dispatch(startAddExpense(expense)),
   };
 };
 
